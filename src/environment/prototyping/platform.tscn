@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxu377m24w5p"]
+
+[ext_resource type="PackedScene" uid="uid://d0fn1j6si1pt2" path="res://src/environment/prototyping/static_block.tscn" id="2_sd7ur"]
+
+[node name="Platform" type="Node2D"]
+modulate = Color(0.180392, 0.419608, 0.541176, 1)
+
+[node name="StaticBlock" parent="." instance=ExtResource("2_sd7ur")]
+scale = Vector2(7.08884, 0.56)
+
+[editable path="StaticBlock"]

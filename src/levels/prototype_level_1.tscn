@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8umyj2tx1ygg"]
+
+[ext_resource type="PackedScene" uid="uid://ofkoqo6nuqsj" path="res://src/environment/prototyping/floor.tscn" id="1_wbaw7"]
+[ext_resource type="PackedScene" uid="uid://bqxu377m24w5p" path="res://src/environment/prototyping/platform.tscn" id="2_8oes7"]
+[ext_resource type="PackedScene" uid="uid://okpo1rk1v43u" path="res://src/player/player.tscn" id="3_hqnpp"]
+[ext_resource type="PackedScene" uid="uid://dlwt6jvlttwwv" path="res://src/environment/prototyping/wall.tscn" id="4_dnyv2"]
+
+[node name="PrototypeLevel1" type="Node2D"]
+position = Vector2(-740, -428)
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2(-40, -62)
+
+[node name="Floor" parent="Level" instance=ExtResource("1_wbaw7")]
+position = Vector2(976, 1888)
+
+[node name="Platforms" type="Node2D" parent="Level"]
+
+[node name="Platform" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
+position = Vector2(502, 759)
+
+[node name="Platform2" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
+position = Vector2(253, 618)
+
+[node name="Platform3" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
+position = Vector2(496, 457)
+
+[node name="Platform4" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
+position = Vector2(1445, 767)
+
+[node name="Platform5" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
+position = Vector2(1925, 767)
+
+[node name="Walls" type="Node2D" parent="Level"]
+
+[node name="Wall" parent="Level/Walls" instance=ExtResource("4_dnyv2")]
+position = Vector2(1080, 309)
+scale = Vector2(1, 1.44)
+
+[node name="Wall2" parent="Level/Walls" instance=ExtResource("4_dnyv2")]
+position = Vector2(-6130, -1084)
+scale = Vector2(-77.2292, 11.7475)
+
+[node name="Wall3" parent="Level/Walls" instance=ExtResource("4_dnyv2")]
+position = Vector2(8096, -1029)
+scale = Vector2(-77.2292, 11.7475)
+
+[node name="Player" parent="." instance=ExtResource("3_hqnpp")]
+position = Vector2(740, 823)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(1, -398)
+scale = Vector2(0.235708, 0.739445)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0

@@ -1,0 +1,18 @@
+local/
+nupkg/
+
+coverage/*
+!coverage/.gdignore
+
+bin/
+obj/
+.generated/
+.vs/
+.DS_Store
+
+*.translation
+
+
+# Godot 4+ specific ignores
+/android/
+.godot/

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ofkoqo6nuqsj"]
+
+[ext_resource type="PackedScene" uid="uid://d0fn1j6si1pt2" path="res://src/environment/prototyping/static_block.tscn" id="1_fyjs1"]
+
+[node name="Floor" type="Node2D"]
+modulate = Color(0.221804, 0.0292556, 0.0452489, 1)
+
+[node name="StaticBlock" parent="." instance=ExtResource("1_fyjs1")]
+scale = Vector2(300, 50)

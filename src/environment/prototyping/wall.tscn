@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlwt6jvlttwwv"]
+
+[ext_resource type="PackedScene" uid="uid://d0fn1j6si1pt2" path="res://src/environment/prototyping/static_block.tscn" id="1_ejt7u"]
+
+[node name="Wall" type="Node2D"]
+modulate = Color(0.270719, 0.174996, 0.0679219, 1)
+
+[node name="StaticBlock" parent="." instance=ExtResource("1_ejt7u")]
+scale = Vector2(0.839999, 17.32)
+
+[node name="CollisionShape2D" parent="StaticBlock/StaticBody2D" index="1"]
+visible = false
+
+[editable path="StaticBlock"]
