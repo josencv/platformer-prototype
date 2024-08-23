@@ -4,6 +4,9 @@ extends CharacterBody2D
 const SPEED = 280.0
 const JUMP_VELOCITY = -900.0
 
+@onready var raycast_right: RayCast2D = $RaycastRight
+@onready var raycast_left: RayCast2D = $RaycastLeft
+
 @export var horizontal_speed: float = 250.0
 @export var jump_velocity: float = -900.0  # Initial jump impulse
 @export var fall_weight: float = 1.5;
@@ -17,6 +20,14 @@ var is_jumping: bool = false
 var jump_time: float = 0.0
 
 func _physics_process(delta: float) -> void:
+    var horizontal_direction: float = Input.get_axis("ui_left", "ui_right")
+    print(horizontal_direction)
+    
+    if horizontal_direction:
+        velocity.x = horizontal_direction * SPEED
+    else:
+        velocity.x = move_toward(velocity.x, 0, SPEED)
+        
     # Apply gravity
     if not is_on_floor():
         velocity += get_gravity() * fall_weight * delta
@@ -43,11 +54,10 @@ func _physics_process(delta: float) -> void:
     if not is_jumping and velocity.y < 0:
         velocity.y *= jump_cut_off
         
-    var direction := Input.get_axis("ui_left", "ui_right")
-    if direction:
-        velocity.x = direction * SPEED
-    else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
-
+    if (horizontal_direction > 0.2 and raycast_right.is_colliding()) or (horizontal_direction < -0.2 and raycast_left.is_colliding()):
+        velocity.y = 0;
+        # Disable subsequent mid-air jumping
+        jump_number = max_jumps
+        
     # Apply movement using move_and_slide
     move_and_slide()

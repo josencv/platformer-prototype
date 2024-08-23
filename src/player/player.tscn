@@ -20,3 +20,13 @@ texture = ExtResource("1_420nl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -29)
 shape = SubResource("CapsuleShape2D_28irs")
+
+[node name="RaycastRight" type="RayCast2D" parent="."]
+position = Vector2(19, -29)
+rotation = -1.5708
+target_position = Vector2(-1.90735e-06, 3)
+
+[node name="RaycastLeft" type="RayCast2D" parent="."]
+position = Vector2(-19, -29)
+rotation = 1.5708
+target_position = Vector2(1.90735e-06, 3)
