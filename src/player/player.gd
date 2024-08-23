@@ -1,25 +1,53 @@
 extends CharacterBody2D
 
 
-const SPEED = 240.0
-const JUMP_VELOCITY = -600.0
+const SPEED = 280.0
+const JUMP_VELOCITY = -900.0
 
+@export var horizontal_speed: float = 250.0
+@export var jump_velocity: float = -900.0  # Initial jump impulse
+@export var fall_weight: float = 1.5;
+@export var max_fall_speed: float = 1200.0 # Max speed when falling
+@export var max_jump_hold_time: float = 0.25 # Max time the player can hold the jump button
+@export var jump_cut_off: float = 0.5      # Factor to reduce the jump height if the button is released early
+@export var max_jumps: int = 2
+
+var jump_number: int = 0
+var is_jumping: bool = false
+var jump_time: float = 0.0
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+    # Apply gravity
+    if not is_on_floor():
+        velocity += get_gravity() * fall_weight * delta
+        velocity.y = min(velocity.y, max_fall_speed)
+        
+    if is_on_floor():
+        jump_number = 0
+    
+    # Handle jump start
+    if Input.is_action_just_pressed("ui_accept") and jump_number < max_jumps and !is_jumping:
+        # Jump velocity is reduced each mid-air jump
+        velocity.y = jump_velocity + (jump_number * 200) 
+        is_jumping = true
+        jump_time = 0.0
+        jump_number += 1
+    
+    # Handle jump duration
+    if is_jumping:
+        jump_time += delta
+        if jump_time > max_jump_hold_time or not Input.is_action_pressed("ui_accept"):
+            is_jumping = false
+    
+    # Handle jump cutoff when releasing the button early
+    if not is_jumping and velocity.y < 0:
+        velocity.y *= jump_cut_off
+        
+    var direction := Input.get_axis("ui_left", "ui_right")
+    if direction:
+        velocity.x = direction * SPEED
+    else:
+        velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
+    # Apply movement using move_and_slide
+    move_and_slide()

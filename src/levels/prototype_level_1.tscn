@@ -17,19 +17,19 @@ position = Vector2(976, 1888)
 [node name="Platforms" type="Node2D" parent="Level"]
 
 [node name="Platform" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
-position = Vector2(502, 759)
+position = Vector2(483, 727)
 
 [node name="Platform2" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
-position = Vector2(253, 618)
+position = Vector2(236, 571)
 
 [node name="Platform3" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
-position = Vector2(496, 457)
+position = Vector2(558, 408)
 
 [node name="Platform4" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
-position = Vector2(1445, 767)
+position = Vector2(1426, 735)
 
 [node name="Platform5" parent="Level/Platforms" instance=ExtResource("2_8oes7")]
-position = Vector2(1925, 767)
+position = Vector2(1906, 735)
 
 [node name="Walls" type="Node2D" parent="Level"]
 
