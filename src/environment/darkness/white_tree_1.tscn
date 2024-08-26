@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bamdyml0e83xl"]
+
+[ext_resource type="Texture2D" uid="uid://degat41vh5scu" path="res://src/environment/darkness/textures/white_tree_1_processed.png" id="1_olsj8"]
+
+[node name="WhiteTree1Processed" type="Sprite2D"]
+z_index = -5
+position = Vector2(-543, 200)
+texture = ExtResource("1_olsj8")

@@ -8,7 +8,4 @@ modulate = Color(0.270719, 0.174996, 0.0679219, 1)
 [node name="StaticBlock" parent="." instance=ExtResource("1_ejt7u")]
 scale = Vector2(0.839999, 17.32)
 
-[node name="CollisionShape2D" parent="StaticBlock/StaticBody2D" index="1"]
-visible = false
-
 [editable path="StaticBlock"]

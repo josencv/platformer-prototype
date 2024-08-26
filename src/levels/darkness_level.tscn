@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://coclwtegsqck7"]
+
+[ext_resource type="PackedScene" uid="uid://ofkoqo6nuqsj" path="res://src/environment/prototyping/floor.tscn" id="1_f7bcq"]
+[ext_resource type="PackedScene" uid="uid://bamdyml0e83xl" path="res://src/environment/darkness/white_tree_1.tscn" id="2_a8lqm"]
+[ext_resource type="PackedScene" uid="uid://okpo1rk1v43u" path="res://src/player/player.tscn" id="3_6wfog"]
+[ext_resource type="Texture2D" uid="uid://s0j3la0hjd07" path="res://src/environment/darkness/textures/city-streen-lantern.png" id="4_nwwdg"]
+[ext_resource type="Script" path="res://src/shared/point_light_flicker.gd" id="5_s42p0"]
+
+[sub_resource type="Gradient" id="Gradient_0fm2l"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ym0pu"]
+gradient = SubResource("Gradient_0fm2l")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[sub_resource type="Gradient" id="Gradient_ucv41"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oorip"]
+gradient = SubResource("Gradient_ucv41")
+width = 4096
+height = 4096
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[node name="DarknessLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("3_6wfog")]
+modulate = Color(0.58006, 0.552834, 0.563953, 1)
+position = Vector2(-1, 400)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -1)
+limit_bottom = 550
+position_smoothing_enabled = true
+drag_left_margin = 0.25
+drag_top_margin = 0.25
+drag_right_margin = 0.25
+drag_bottom_margin = 0.25
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+position = Vector2(0, -39)
+texture = SubResource("GradientTexture2D_ym0pu")
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Floor" parent="Level" instance=ExtResource("1_f7bcq")]
+modulate = Color(1, 1, 1, 1)
+position = Vector2(-18, 761)
+scale = Vector2(1, 0.360001)
+
+[node name="Trees" type="Node2D" parent="Level"]
+
+[node name="WhiteTree1Processed" parent="Level/Trees" instance=ExtResource("2_a8lqm")]
+position = Vector2(752, 202)
+
+[node name="WhiteTree1Processed5" parent="Level/Trees" instance=ExtResource("2_a8lqm")]
+position = Vector2(3647, 202)
+
+[node name="WhiteTree1Processed3" parent="Level/Trees" instance=ExtResource("2_a8lqm")]
+position = Vector2(-1767, 114)
+scale = Vector2(1.5, 1.5)
+
+[node name="WhiteTree1Processed4" parent="Level/Trees" instance=ExtResource("2_a8lqm")]
+position = Vector2(4242, 106)
+scale = Vector2(1.5, 1.5)
+
+[node name="WhiteTree1Processed2" parent="Level/Trees" instance=ExtResource("2_a8lqm")]
+position = Vector2(-387, 257)
+scale = Vector2(0.8, 0.8)
+
+[node name="WhiteTree1Processed6" parent="Level/Trees" instance=ExtResource("2_a8lqm")]
+position = Vector2(2338, 249)
+scale = Vector2(0.8, 0.8)
+
+[node name="City-streen-lantern" type="Sprite2D" parent="Level"]
+position = Vector2(1579, 279)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_nwwdg")
+
+[node name="PointLight2D" type="PointLight2D" parent="Level/City-streen-lantern"]
+position = Vector2(0, -166)
+energy = 1.1
+texture = SubResource("GradientTexture2D_oorip")
+texture_scale = 1.1
+script = ExtResource("5_s42p0")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0142752, 0.0142752, 0.0142752, 1)
